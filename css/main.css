@@ -1,0 +1,225 @@
+/* ============ RESET ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 2px solid rgba(229, 25, 25, 0) !important;
+}
+
+/* ============ GENERAL ============ */
+a,
+p {
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+
+/* ============ HEADER ============ */
+.header-sticky {
+    width: 100%;
+    font-size: 20px;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.navbar {
+    width: 100%;
+    font-size: 20px;
+    background-image: linear-gradient(to right, #ff6347, #ff745b);
+    position: sticky;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.logo {
+    height: 45px;
+    margin-right: 15px;
+}
+
+.navbar-brand:hover {
+    color: #ff6347 !important;
+}
+
+.nav-link {
+    color: black !important;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.dropdown-menu {
+    background-color: white;
+}
+
+.dropdown-item {
+    color: black;
+}
+
+.dropdown-item:hover {
+    color: black;
+    background-image: radial-gradient(circle, rgb(255, 99, 71) 0%, #ff6347, #ff745b 100%);
+}
+
+.dropdown-divider {
+    background-color: #ff6347;
+}
+
+/* ============ MAIN ============ */
+.carousel {
+    margin-top: 20px;
+}
+
+/* ============ PRODUCTOS ============ */
+.div-frase-inicio {
+    margin: 5px 0px 5px 0px;
+    text-align: center;
+}
+
+.frase-inicio {
+    color: #000000;
+}
+
+.container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px 15px;
+}
+
+.card {
+    border: none;
+    text-align: center;
+}
+
+.card a img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+
+.card-name,
+.precio {
+    font-weight: bold;
+}
+
+
+del {
+    color: grey;
+    font-weight: normal;
+}
+
+/* ============ FOOTER ============ */
+footer {
+    background-color: #ff6347;
+    position: relative;
+    padding: 10px;
+    font-size: 15px;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    align-items: center;
+}
+
+.medios-de-pago-padre {
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.medios-de-pago-p {
+    color: white;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.redes-sociales {
+    margin-top: 5px;
+    width: 100%;
+    gap: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.social-icons {
+    gap: 1.5rem;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    margin: 5px;
+    height: 30px
+}
+
+.newsletterPadre {
+    display: grid;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.newsletterSuscripcion {
+    margin-bottom: 10px;
+}
+
+.newsletter {
+    color: white;
+}
+
+input {
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.buttonNewsletter {
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.buttonNewsletter:hover {
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    color: white;
+}
+
+.divCopyright {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+/* ============ MEDIA QUERIES ============ */
+
+@media screen and (min-width:1024px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 15px 35px;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: repeat(3, 33.3%);
+    }
+
+    .divCopyright {
+        display: grid;
+        grid-column: span 3;
+    }
+}
