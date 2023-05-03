@@ -3,6 +3,16 @@ Bienvenido a Yerba Buena, tu tienda en línea especializada en mates, termos, bo
 
 ## DOCUMENTO
 
-En esta ocasion se presenta un proyecyo con un conjunto de instrucciones para el usuario con el fin de realizar compras en la página, dando lugar a la intereacción del usuario mediante preguntas acerca de datos básicos como tambien se lo pone en situaciones donde debe elegir la opcion que más desea para continuar y todo esto se logra a traves del uso de prompts y alerts principalmente. Básicamente toda la interacción se da por este medio sin la necesidad, en esta ocasión, de recurrir a la consola.
+En esta ocasion se presenta un proyecto con un conjunto de funciones y eventos para que usuarios con el fin de realizar compras en la página, dando lugar a la intereacción del usuario mediante botones basicamente los cuales permiten generar modificaciones en el DOM, es decir, esto permite al usuario poder ver aquello que esta eligiendo comprar o bien, agregar o quitar productos de su carrito.
 
-Dentro de este trabajo, se utiliza un lenguaje completamente básico de JavaScript combinando variables, condicionales, operadores, ciclos, sentencias, switch, funciones, operaciones y bucles, arrays, objetos, clases, métodos de búsqueda / funciones de orden superior propias de este lenguje.
+Dentro de este trabajo, se utiliza un lenguaje no tan básico de JavaScript en el cual se emplean diferentes técnicas y métodos para manipular el DOM y hacer más interactiva la experiencia del usuario. 
+
+Algunas de estas técnicas son:
+
+- Selección de elementos del DOM utilizando métodos como getElementById, querySelector, entre otros.
+- Manejo de eventos con addEventListener.
+- Uso de arrays y métodos como forEach y filter.
+- Uso de funciones y pasaje de argumentos.
+- Uso de condicionales if/else.
+- Manipulación del DOM para crear elementos HTML y actualizar su contenido.
+- Uso de almacenamiento local y de sesión con localStorage y sessionStorage.git

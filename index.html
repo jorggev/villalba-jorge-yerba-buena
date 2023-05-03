@@ -6,9 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -31,36 +28,52 @@
 
   <header class="header-sticky">
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img class="logo" src="img/logos/icono-termo.png"
-            alt="Termo icono"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="index.html" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">PRODUCTOS</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="index.html">Mates</a></li>
-                <li><a class="dropdown-item" href="index.html">Termos</a></li>
-                <li><a class="dropdown-item" href="index.html">Bombillas</a></li>
-                <li><a class="dropdown-item" href="index.html">Yerbas</a></li>
-              </ul>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">PREGUNTAS FRECUENTES</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="index.html">CONTACTO</a>
-            </li>
-            </li>
-          </ul>
+
+    <div class="navbar-container">
+      <a class="navbar-brand" href="#"><img src="https://img.icons8.com/cotton/64/000000/thermos.png"
+          alt="Termo Icono" />YERBA BUENA
+      </a>
+      <i class="btn-carrito" id="carrito-btn">
+        <img src="img/logos/carrito.png" />
+        <span class="contador">0</span>
+      </i>
+
+      <!-- CARRITO -->
+      <div class="carrito">
+
+        <div class="header-carrito">
+          <h3 class="titulo-carrito">TU CARRITO</h3>
+          <!-- CERRAR CARRITO -->
+          <button id="cerrar-carrito-btn" class="cerrar-carrito-btn">X</button>
         </div>
+
+
+        <!-- CONTENDIDO DEL CARRITO -->
+        <div class="carrito-contenido">
+          <!-- PRODUCTOS -->
+        </div>
+
+        <!-- TOTAL -->
+        <div class="total">
+          <div class="titulo-total">TOTAL</div>
+          <div class="total-precio">$0</div>
+        </div>
+
+
+        <!-- BOTONES DEL CARRITO -->
+        <div class="btns-carrito">
+          <!-- BOTON COMPRAR -->
+          <a href="/pages/finalizarcompra.html">
+            <button type="button" class="btn-comprar">COMPRAR</button>
+          </a>
+          <button id="vaciar-carrito-btn" class="btn-vaciar">VACIAR</button>
+        </div>
+
       </div>
-    </nav>
+
+
+
+    </div>
 
   </header>
 
@@ -80,94 +93,145 @@
 
   <div class="div-frase-inicio">
     <h1 class="titulo-inicio">YERBA BUENA</h1>
-    <p class="frase-inicio"><strong>EL MEJOR LUGAR PARA LOS AMANTES DEL MATE</strong></p>
+    <p class="frase-inicio">EL MEJOR LUGAR PARA LOS AMANTES DEL MATE</p>
+
   </div>
 
-
+  <!-- PRODUCTOS -->
   <div class="container">
 
     <div class="card">
-      <a href="index.html">
-        <img src="img/mates/imperial-deluxe-blanco.jpg" alt="Mate imperial deluxe blanco">
+      <a href="pages/mate-imperial-deluxe-blanco.html">
+        <img src="img/mates/imperial-deluxe-blanco.jpg" alt="Mate imperial deluxe blanco" class="img-producto">
       </a>
-      <p class="card-name">MATE IMPERIAL DELUXE BLANCO</p>
-      <p class="precio"><del>$12.527,88</del> $9.322,55</p>
+      <p class="card-name" data-keywords="mate">MATE IMPERIAL DELUXE BLANCO</p>
+      <span class="precio"> $9322</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/mates/mate-camionero-algarrobo.jpg" alt="Mate camionero de algarrobo">
-        <p class="card-name">MATE CAMIONERO DE ALGARROBO</p>
-        <p class="precio"><del>$9.863,68</del> $6.411,41</p>
+        <img src="img/mates/mate-camionero-algarrobo.jpg" alt="Mate camionero de algarrobo" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="mate">MATE CAMIONERO DE ALGARROBO</p>
+      <span class="precio"> $6411</span>
+
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
+
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/mates/mate-ceramica-esmaltado.jpg" alt="Mate ceramica esmaltado">
-        <p class="card-name">MATE DE CERÁMICA ESMALTADA</p>
-        <p class="precio"><del>$10.707,73</del> $7.354,00</p>
+        <img src="img/mates/mate-ceramica-esmaltado.jpg" alt="Mate ceramica esmaltado" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="mate">MATE DE CERÁMICA ESMALTADA</p>
+      <span class="precio"> $7354</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
+    </div>
+
+
+    <div class="card" data-producto="MATE TORPEDO">
+      <a href="index.html">
+        <img src="img/mates/mate-torpedo.jpg" alt="Mate torpedo" class="img-producto">
+      </a>
+      <p class="card-name" data-keywords="mate">MATE TORPEDO</p>
+      <span class="precio">$8267</span>
+
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/mates/mate-torpedo.jpg" alt="Mate torpedo">
-        <p class="card-name">MATE TORPEDO</p>
-        <p class="precio"><del>$10.833,90</del> $8.267,12</p>
+        <img src="img/bombillas/bombilla-pico-de-alpaca-cincelado.png" alt="Bombilla pico de alpa cincelado"
+          class="img-producto">
       </a>
+      <p class="card-name" data-keywords="bombilla">BOMBILLA PICO DE ALPCA CINCELADO</p>
+      <span class="precio">$9135</span>
+
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/bombillas/bombilla-pico-de-alpaca-cincelado.png" alt="Bombilla pico de alpa cincelado">
-        <p class="card-name">BOMBILLA PICO DE ALPCA CINCELADO</p>
-        <p class="precio"><del>$11.025,00</del> $9.135,00</p>
+        <img src="img/bombillas/bombilla-pico-de-loro.png" alt="Bombilla pico de loro" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="bombilla">BOMBILLA PICO DE LORO</p>
+      <span class="precio">$2596</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/bombillas/bombilla-pico-de-loro.png" alt="Bombilla pico de loro">
-        <p class="card-name">BOBMILLA PICO DE LORO</p>
-        <p class="precio">$2.596,61</p>
+        <img src="img/bombillas/bombilla-pico-de-rey.png" alt="Bombilla pico de rey" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="bombilla">BOMBILLA PICO DE REY</p>
+      <span class="precio">$2874</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png"
+        class="buttonAgregar" /></button>
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/bombillas/bombilla-pico-de-rey.png" alt="Bombilla pico de rey">
-        <p class="card-name">BOMBILLA PICO DE REY</p>
-        <p class="precio"><del>$5.185,00</del> $2.874,50</p>
+        <img src="img/yerbas/yerba-canarias.png" alt="Yerba Canarias" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="yerba">YERBA CANARIAS Uruguaya 1/2 Kg</p>
+      <span class="precio">$1836</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/yerbas/yerba-canarias.png" alt="Yerba Canarias">
-        <p class="card-name">YERBA CANARIAS Uruguaya 1/2 Kg</p>
-        <p class="precio">$1.836,35</p>
+        <img src="img/termos/termo-media-manija.png" alt="Termo Media Manija" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="termo">TERMO MEDIA MANIJA 1L</p>
+      <span class="precio">$4600</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/termos/termo-media-manija.png" alt="Termo acero negro">
-        <p class="card-name">TERMO MEDIA MANIJA 1L</p>
-        <p class="precio"><del>$7.884,02</del> $4.600,81</p>
+        <img src="img/termos/termo-luminox.png" alt="Termo Luminox" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="termo">TERMO LUMINOX</p>
+      <span class="precio">$6600</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
     </div>
 
     <div class="card">
       <a href="index.html">
-        <img src="img/termos/termo-stanley.png" alt="Termo Stanley">
-        <p class="card-name">TERMO STANLEY 1,3L</p>
-        <p class="precio"><del>$9.884,02</del> $6.600,81</p>
+        <img src="img/termos/matera.png" alt="Matera" class="img-producto">
       </a>
+      <p class="card-name" data-keywords="mate">MATERA</p>
+      <span class="precio">$7250</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
+    </div>
+
+    <div class="card">
+      <a href="index.html">
+        <img src="img/termos/yerbera.png" alt="Yerbera" class="img-producto">
+      </a>
+      <p class="card-name" data-keywords="yerba">YERBERA</p>
+      <span class="precio">$2340</span>
+      <img src="https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png" class="buttonAgregar" />
+
     </div>
 
   </div>
 
+
+  <!-- PIE DE PAGINA -->
   <footer>
 
     <div class="medios-de-pago-padre">
@@ -234,9 +298,6 @@
 
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
   <script src="./scripts/main.js"></script>
 </body>
 
