@@ -65,52 +65,52 @@ function actualizar() {
 const container = document.getElementById('productosContainer');
 async function cargarProductos() {
     try {
-      const response = await fetch('./data/productos.json');
-      const productos = await response.json();
-  
-      productos.forEach(producto => {
-        const card = document.createElement('div');
-        card.classList.add('card');
+        const response = await fetch('./data/productos.json');
+        const productos = await response.json();
 
-        const link = document.createElement('a');
-        link.href = 'index.html';
+        productos.forEach(producto => {
+            const card = document.createElement('div');
+            card.classList.add('card');
 
-        const imagen = document.createElement('img');
-        imagen.src = producto.imagen;
-        imagen.alt = producto.nombre;
-        imagen.classList.add('img-producto');
-        link.appendChild(imagen);
+            const link = document.createElement('a');
+            link.href = 'index.html';
 
-        const nombre = document.createElement('p');
-        nombre.classList.add('card-name');
-        nombre.textContent = producto.nombre;
+            const imagen = document.createElement('img');
+            imagen.src = producto.imagen;
+            imagen.alt = producto.nombre;
+            imagen.classList.add('img-producto');
+            link.appendChild(imagen);
 
-        const precio = document.createElement('span');
-        precio.classList.add('precio');
-        precio.textContent = producto.precio;
+            const nombre = document.createElement('p');
+            nombre.classList.add('card-name');
+            nombre.textContent = producto.nombre;
 
-        const buttonAgregar = document.createElement('img');
-        buttonAgregar.src = 'https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png';
-        buttonAgregar.classList.add('buttonAgregar');
+            const precio = document.createElement('span');
+            precio.classList.add('precio');
+            precio.textContent = producto.precio;
 
-        card.appendChild(link);
-        card.appendChild(nombre);
-        card.appendChild(precio);
-        card.appendChild(buttonAgregar);
+            const buttonAgregar = document.createElement('img');
+            buttonAgregar.src = 'https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png';
+            buttonAgregar.classList.add('buttonAgregar');
 
-        container.appendChild(card);
-      });
-  
-      addEventos();
-  
+            card.appendChild(link);
+            card.appendChild(nombre);
+            card.appendChild(precio);
+            card.appendChild(buttonAgregar);
+
+            container.appendChild(card);
+        });
+
+        addEventos();
+
     } catch (error) {
-      Toastify({
-        text: "Error al cargar los productos: " + error.message,
-        duration: 3000,
-        position: "bottom",
-      }).showToast();
+        Toastify({
+            text: "Error al cargar los productos: " + error.message,
+            duration: 3000,
+            position: "bottom",
+        }).showToast();
     }
-  }
+}
 
 
 
@@ -321,7 +321,11 @@ btnPagar.addEventListener('click', function () {
                     icon: 'success',
                     showConfirmButton: true,
                     allowOutsideClick: true,
-                    allowEscapeKey: true
+                    allowEscapeKey: true,
+                    didClose: () => {
+                        sessionStorage.clear();
+                        location.reload();
+                    }
                 });
                 Swal.hideLoading();
             }, 2000);
@@ -355,7 +359,8 @@ function actualizarTotal() {
     const totalEnCuotas = calcularTotalEnCuotas(total, cuotasSeleccionadas);
 
     const totalCompleto = totalEnCuotas * cuotasSeleccionadas;
-    totalCompra.innerHTML = "Total: $" + totalCompleto + " / Cuotas: $" + totalEnCuotas;
+    totalCompra.innerHTML = "Total: $" + totalCompleto.toFixed(2) + " / Cuotas: $" + totalEnCuotas.toFixed(2);
+
 }
 
 function calcularTotalEnCuotas(total, cuotas) {
