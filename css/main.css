@@ -49,6 +49,14 @@ p {
     margin-right: 15px;
 }
 
+
+.searchBox {
+    height: 50px;
+    margin-top: 5px;
+    width: 300px;
+    text-align: center;
+}
+
 /* ============ MAIN ============ */
 .carousel {
     margin-top: 20px;
@@ -221,67 +229,77 @@ p {
 
 
 .finalizar-compra {
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 110px;
-    margin-bottom: 120px;
-    border-radius: 10px;
+    width: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    transition: all 0.5s;
+    border-left: 2px solid rgb(0, 0, 0);
+    background-image: url(/img/home/fondo-compra.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     display: grid;
-    grid-template-columns: repeat(2, 50%);
-    background-color: black;
+    align-items: center;
 }
 
-.img-finalizar-compra {
-    margin: 20px;
-    border-radius: 10px;
+.finalizar-compra.activo {
+    right: 0;
+    transition: .5s;
 }
 
-.formulario-pago {
-    background-color: #0606067c;
-    border: 1px solid white;
-    color: white;
+.header-finalizar-compra {
+    margin-top: 20px;
     display: grid;
-    grid-template-rows: 1fr;
-    margin: 100px;
-    padding: 50px;
+    color: black;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
 }
 
-.formulario-pago h3 {
-    grid-column: span 2;
-    text-align: center;
+.titulo-fincompra {
+    font-size: 25px;
 }
 
+
+
+.formulario-pago{
+    margin: 25px;
+}
 .procesar_pago {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
+    background-color: #2626268c;
+    border: 2px solid rgba(255, 255, 255, 0.426);
+    width: 100%;
     border-radius: 10px;
     padding: 10px;
-    margin: 0px 25px;
+    margin: 20px 0px;
+
 }
 
 .procesar_pago label {
-    color: gray;
-    margin: 5px;
+    display: block;
+    background: none;
+    border: none;
+    color: rgb(138, 138, 138);
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .procesar_pago input {
-    text-align: center;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.pagar {
+    font-weight: bold;
     display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-column: span 2;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.426);
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    color: white;
 }
 
-.pagar .cuotas-pagar {
+.pagar .cuotas-pagar, select {
+    margin-top: 10px;
     padding: 5px;
     border-radius: 5px;
     background-color: white;
@@ -291,7 +309,6 @@ p {
 
 .btn-pagar {
     font-weight: bold;
-    margin-top: 20px;
     padding: 5px;
     border-radius: 5px;
     background-color: white;
@@ -305,6 +322,35 @@ p {
     border: 1px solid white;
 }
 
+
+.pago {
+    margin-top: 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.total-compra{
+    background-color: rgb(0, 227, 144);
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+
+.cerrar-compra-btn {
+    position: absolute;
+    right: 0.8rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: transparent;
+    border: none;
+}
+
 /* ============ PRODUCTOS ============ */
 .div-frase-inicio {
     margin: 5px 0px 5px 0px;
@@ -316,6 +362,8 @@ h1,
 .frase-inicio {
     color: white;
 }
+
+
 
 .container {
     margin-top: 10px;
@@ -339,7 +387,7 @@ h1,
 }
 
 .card:hover {
-    border: 2px solid rgb(255, 212, 131);
+    border: 3px solid orangered;
 }
 
 
@@ -370,21 +418,20 @@ h1,
 
 
 .buttonAgregar {
-    background-color: white;
+    background-color: orangered;
     color: black;
     border-style: none;
     padding: 5px;
     border-radius: 5px;
-    transition: 0.5s;
     position: absolute;
     bottom: 5px;
     right: 5px;
     cursor: pointer;
+
 }
 
 .buttonAgregar:hover {
     border: 2px solid black;
-    transition: 0.5s;
 
 }
 
@@ -493,7 +540,8 @@ input {
     }
 
 
-    .carrito {
+    .carrito,
+    .finalizar-compra {
         width: 455px;
     }
 

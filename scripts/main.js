@@ -11,6 +11,27 @@ cerrarCarritoBtn.addEventListener("click", () => {
     carrito.classList.remove("activo");
 });
 
+
+
+
+// ELEMENTOS PARA FINALIZAR LA COMPRA
+const btnComprar = document.querySelector(".btn-comprar");
+const btnCerrarCompra = document.getElementById("cerrar-compra");
+const finalizarCompra = document.querySelector(".finalizar-compra");
+
+// Abrir finalizar compra al hacer clic en "COMPRAR"
+btnComprar.addEventListener("click", () => {
+    carrito.classList.remove("activo");
+    finalizarCompra.classList.add("activo");
+});
+
+// Cerrar finalizar compra al hacer clic en "X"
+btnCerrarCompra.addEventListener("click", () => {
+    finalizarCompra.classList.remove("activo");
+});
+
+
+
 // ----------------- INICIAR DOCUMENTO -----------------
 if (document.readyState == "cargando") {
     document.addEventListener('DOMContentLoaded', iniciar);
@@ -18,6 +39,10 @@ if (document.readyState == "cargando") {
     iniciar();
 }
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    cargarProductos();
+});
 
 let productosAgregados = []
 // ----------------- FUNCIONES DE INICIO -----------------
@@ -35,12 +60,71 @@ function actualizar() {
 
 }
 
+
+
+const container = document.getElementById('productosContainer');
+async function cargarProductos() {
+    try {
+      const response = await fetch('./data/productos.json');
+      const productos = await response.json();
+  
+      productos.forEach(producto => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const link = document.createElement('a');
+        link.href = 'index.html';
+
+        const imagen = document.createElement('img');
+        imagen.src = producto.imagen;
+        imagen.alt = producto.nombre;
+        imagen.classList.add('img-producto');
+        link.appendChild(imagen);
+
+        const nombre = document.createElement('p');
+        nombre.classList.add('card-name');
+        nombre.textContent = producto.nombre;
+
+        const precio = document.createElement('span');
+        precio.classList.add('precio');
+        precio.textContent = producto.precio;
+
+        const buttonAgregar = document.createElement('img');
+        buttonAgregar.src = 'https://img.icons8.com/material-outlined/40/null/add-shopping-cart.png';
+        buttonAgregar.classList.add('buttonAgregar');
+
+        card.appendChild(link);
+        card.appendChild(nombre);
+        card.appendChild(precio);
+        card.appendChild(buttonAgregar);
+
+        container.appendChild(card);
+      });
+  
+      addEventos();
+  
+    } catch (error) {
+      Toastify({
+        text: "Error al cargar los productos: " + error.message,
+        duration: 3000,
+        position: "bottom",
+      }).showToast();
+    }
+  }
+
+
+
 // ----------------- FUNCIONES DE EVENTOS -----------------
 function addEventos() {
 
+    // BUSCAR PRODUCTOS
+    let searchBox = document.querySelectorAll(".searchBox");
+    searchBox.forEach(buscar => {
+        buscar.addEventListener("input", handle_BuscarProductos);
+    })
+
     // QUITAR ELEMENTOS DEL CARRITO
     let quitarCarrito_botones = document.querySelectorAll(".carrito-btn-eliminar");
-
     quitarCarrito_botones.forEach(btnQuitar => {
         btnQuitar.addEventListener("click", handle_quitarCarritoItem);
     });
@@ -57,6 +141,10 @@ function addEventos() {
         btn.addEventListener("click", handle_agregarProductos);
     })
 
+    // BOTON DE COMPRA
+    let boton_comprar = document.querySelector(".btn-comprar");
+    boton_comprar.addEventListener("click", handle_botonComprar);
+
     // CARRITO VACIO
     let btnVaciar = document.querySelectorAll('.btn-vaciar');
     btnVaciar.forEach(btnVaciar => {
@@ -67,13 +155,29 @@ function addEventos() {
 
 //----------------- HANDLE DE LAS FUNCIONES DE EVENTOS -----------------
 
+// BUSCAR PRODUCTOS EN EL HTML
+
+function handle_BuscarProductos() {
+    const buscar = this.value.toUpperCase();
+
+    const productos = document.querySelectorAll(".card");
+
+    productos.forEach((producto) => {
+        const nombreProducto = producto.querySelector(".card-name").innerHTML.toUpperCase();
+
+        producto.style.display = nombreProducto.includes(buscar) ? "grid" : "none";
+    });
+};
+
+
+//AGREGANDO PROODUCTOS
 function handle_agregarProductos() {
 
-
     let producto = this.parentElement;
-    let nombre = producto.querySelector(".card-name").innerHTML;
-    let precio = producto.querySelector(".precio").innerHTML;
-    let img = producto.querySelector(".img-producto").src;
+    let { innerHTML: nombre } = producto.querySelector(".card-name");
+    let { innerHTML: precio } = producto.querySelector(".precio");
+    let { src: img } = producto.querySelector(".img-producto");
+
 
     let newAgregandoProductos = {
         nombre,
@@ -83,14 +187,27 @@ function handle_agregarProductos() {
 
 
     // SI EL PRODUCTO YA EXISTE
-    if (productosAgregados.find((tit) => tit.nombre == newAgregandoProductos.nombre)) {
+    const productoExistente = productosAgregados.find((existeProducto) => existeProducto.nombre === newAgregandoProductos.nombre);
+
+    Toastify({
+        text: productoExistente !== undefined ? "Este producto ya se encuentra en tu carrito!" : "Producto agregado!",
+        duration: 3000,
+        gravity: "bottom",
+        position: "right",
+        style: {
+            background: `${productoExistente !== undefined ? "linear-gradient(to right, #d20909, #b60f0f)" : "linear-gradient(to right, #25b60f, #027d0d)"}`,
+        },
+    }).showToast();
+
+    // Si el producto ya existe, no se agrega nuevamente
+    if (productoExistente !== undefined) {
         return;
     }
-    else {
-        productosAgregados.push(newAgregandoProductos);
-    }
 
-    // AGREGAR PRODUCTO AL CARRITO
+    productosAgregados.push(newAgregandoProductos);
+
+
+    // AGREGAR PRODUCTOS AL CARRITO
     let cardElement = htmlElementos(nombre, precio, img);
     let newNodo = document.createElement("div");
     newNodo.innerHTML = cardElement;
@@ -98,7 +215,6 @@ function handle_agregarProductos() {
     contenidoCarrito.appendChild(newNodo);
     actualizar();
 
-    localStorage.setItem("Carrito", JSON.stringify(productosAgregados));
     sessionStorage.setItem("Carrito", JSON.stringify(productosAgregados));
 
 }
@@ -115,15 +231,35 @@ function handle_quitarCarritoItem() {
 
 }
 
+// VACIAR CARRITO
 function handle_vaciarCarrito() {
     const contenidoCarrito = document.querySelector(".carrito-contenido");
     contenidoCarrito.innerHTML = "";
     productosAgregados = [];
     actualizar();
 
+    sessionStorage.setItem("Carrito", JSON.stringify(productosAgregados));
+
 }
 
+// BOTON DE COMPRA
+function handle_botonComprar() {
+    if (productosAgregados.length <= 0) {
+        Toastify({
+            text: "Tu carrito está vacio. Por favor, selecciona un producto para finalizar tu compra.",
+            duration: 3000,
+            gravity: 'top',
+            position: 'center',
+            style: {
+                background: "linear-gradient(to right, #d20909, #b60f0f)",
+            }
+        }).showToast();
+        return;
+    }
+    actualizar();
+}
 
+// CANTIDAD DE LOS PRODUCTOS
 function handle_cambiarCantidad() {
     if (isNaN(this.value) || this.value < 1) {
         this.value = 1;
@@ -142,23 +278,106 @@ function actualizarContador() {
 }
 
 
+//MENSAJE FINALIZADA LA COMPRA
+const btnPagar = document.getElementById('btnPagar');
+
+btnPagar.addEventListener('click', function () {
+    const nombreCompleto = document.getElementById('nombreCompleto').value;
+    const email = document.getElementById('email').value;
+    const numeroTarjeta = document.getElementById('numero_tarjeta').value;
+    const provincia = document.getElementById('provincia').value;
+    const ciudad = document.getElementById('ciudad').value;
+    const direccion = document.getElementById('direccion').value;
+
+
+    actualizarTotal();
+
+    // SIMULACION DE PROCESAMIENTO DE PAGO CON SETTIMEOUT
+    Swal.fire({
+        title: 'Procesando pago...',
+        html: 'Procesando tu pago, por favor espera...',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+            setTimeout(() => {
+                const totalCompra = document.getElementById('total-compra').innerHTML;
+                const mensaje = `
+                    ¡Gracias ${nombreCompleto} por elegirnos!
+                    <br>
+                    ¡El pago fue realizado con éxito!
+                    <br><br>
+                    Te hemos enviado tu factura de compra y el código de seguimiento a tu correo: ${email}
+                    <br><br>
+                    Tu compra llegará en 7 dias hábiles a tu domicilio: ${direccion}, ${ciudad}, ${provincia}.
+                    <br><br>
+                    Pagaste ${totalCompra}.
+                    <br>
+                    Tarjeta: **** - **** - **** - ${numeroTarjeta.slice(-4)}.
+                    `;
+                Swal.update({
+                    title: '¡Pago exitoso!',
+                    html: mensaje,
+                    icon: 'success',
+                    showConfirmButton: true,
+                    allowOutsideClick: true,
+                    allowEscapeKey: true
+                });
+                Swal.hideLoading();
+            }, 2000);
+        }
+    });
+});
+
+
 //----------------- ACTUALIZACION DE LAS FUNCIONES -----------------
+// TOTAL DE LA COMPRA
+
+
 function actualizarTotal() {
     let carritoProductos = document.querySelectorAll('.productos');
     const totalCarrito = carrito.querySelector('.total-precio');
+    const totalCompra = document.getElementById('total-compra');
+
     let total = 0;
     carritoProductos.forEach(productos => {
-        let precioELement = productos.querySelector('.carrito-precio-producto');
-        let precio = parseFloat(precioELement.innerHTML.replace("$", ""));
+        let precioElement = productos.querySelector('.carrito-precio-producto');
+        let precio = parseFloat(precioElement.innerHTML.replace("$", ""));
         let cantidad = productos.querySelector(".carrito-cantidad").value;
         total += precio * cantidad;
-    })
+    });
 
     total = Math.round(total * 100) / 100;
-
-
     totalCarrito.innerHTML = "$" + total;
+
+    const cuotasSelect = document.getElementById('cuotas');
+    const cuotasSeleccionadas = parseInt(cuotasSelect.value);
+    const totalEnCuotas = calcularTotalEnCuotas(total, cuotasSeleccionadas);
+
+    const totalCompleto = totalEnCuotas * cuotasSeleccionadas;
+    totalCompra.innerHTML = "Total: $" + totalCompleto + " / Cuotas: $" + totalEnCuotas;
 }
+
+function calcularTotalEnCuotas(total, cuotas) {
+    const intereses = {
+        3: 1.05,
+        6: 1.5,
+        12: 2.2
+    };
+    let totalEnCuotas = total;
+
+    if (cuotas === 3 || cuotas === 6 || cuotas === 12) {
+        const factorInteres = intereses[cuotas];
+        totalEnCuotas = (total * factorInteres) / cuotas;
+    }
+
+    return Math.round(totalEnCuotas * 100) / 100;
+
+
+}
+
+const cuotasSelect = document.getElementById('cuotas');
+cuotasSelect.addEventListener('change', actualizarTotal);
 
 
 

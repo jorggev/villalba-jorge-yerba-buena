@@ -1,0 +1,62 @@
+[
+    {
+        "nombre": "MATE IMPERIAL DELUXE BLANCO",
+        "imagen": "img/mates/imperial-deluxe-blanco.jpg",
+        "precio": "$9322"
+    },
+    {
+        "nombre": "MATE CAMIONERO DE ALGARROBO",
+        "imagen": "img/mates/mate-camionero-algarrobo.jpg",
+        "precio": "$6411"
+    },
+    {
+        "nombre": "MATE DE CERÁMICA ESMALTADA",
+        "imagen": "img/mates/mate-ceramica-esmaltado.jpg",
+        "precio": "$7354"
+    },
+    {
+        "nombre": "MATE TORPEDO",
+        "imagen": "img/mates/mate-torpedo.jpg",
+        "precio": "$8267"
+    },
+    {
+        "nombre": "BOMBILLA PICO DE ALPCA CINCELADO",
+        "imagen": "img/bombillas/bombilla-pico-de-alpaca-cincelado.png",
+        "precio": "$9135"
+    },
+    {
+        "nombre": "BOMBILLA PICO DE LORO",
+        "imagen": "img/bombillas/bombilla-pico-de-loro.png",
+        "precio": "$2596"
+    },
+    {
+        "nombre": "BOMBILLA PICO DE REY",
+        "imagen": "img/bombillas/bombilla-pico-de-rey.png",
+        "precio": "$2874"
+    },
+    {
+        "nombre": "YERBA CANARIAS Uruguaya 1/2 Kg",
+        "imagen": "img/yerbas/yerba-canarias.png",
+        "precio": "$1836"
+    },
+    {
+        "nombre": "TERMO MEDIA MANIJA 1L",
+        "imagen": "img/termos/termo-media-manija.png",
+        "precio": "$4600"
+    },
+    {
+        "nombre": "TERMO LUMINOX",
+        "imagen": "img/termos/termo-luminox.png",
+        "precio": "$6600"
+    },
+    {
+        "nombre": "MATERA",
+        "imagen": "img/termos/matera.png",
+        "precio": "$7250"
+    },
+    {
+        "nombre": "YERBERA",
+        "imagen": "img/termos/yerbera.png",
+        "precio": "$2340"
+    }
+]
